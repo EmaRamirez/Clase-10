@@ -1,0 +1,39 @@
+@using Clase6.ViewModels;
+@model MenuDetailViewModels
+@{
+
+}
+
+<div>
+    <div class="mb-3">
+        <h2>Descripcion del plato @Model.Name</h2>
+    </div>
+    <div class="mb-3">
+        <h4>@Html.DisplayNameFor(x => x.Price)</h4>
+        <p>$@Model.Price</p>
+    </div>
+    <div class="mb-3">
+        <h4>@Html.DisplayNameFor(x => x.IsVegetarian)</h4>
+        <p>@Model.IsVegetarian</p>
+    </div>
+    <div class="mb-3">
+        <h4>@Html.DisplayNameFor(x => x.Type)</h4>
+        <p>@Model.Type</p>
+    </div>
+    <div class="mb-3">
+        <h4>@Html.DisplayNameFor(x => x.Calories)</h4>
+        <p>@Model.Calories</p>
+    </div>
+    <div class="mb-3">
+        <h4>Listado de Resturantes</h4>
+        <ol>
+            @foreach (var item in Model.Restaurants)
+            {
+                <li>@item.Name</li>
+            }
+        </ol>
+    </div>
+
+
+    <a asp-action="Index" class="btn btn-primary">Volver</a>
+</div>

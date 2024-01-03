@@ -1,0 +1,50 @@
+@using Clase6.ViewModels;
+@model MenuViewModel
+@{
+
+}
+
+<h2 style="text-align: center;">Menu de Comidas para pedir</h2>
+<div class="row">
+    <form asp-action="Index" method="get" asp-controller="Menu">
+        <div class="col-6 form-group">
+            <input type="text" class="form-control" asp-for="NameFilter" placeholder="Ingrese lo que esta buscando">
+        </div>
+        <button class="btn btn-info" type="submit">Filtrar</button>
+    </form>
+</div>
+<br>
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-success">Agregar</a>
+</div>
+
+<table class="table table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Menus.First().Name)
+            <th>@Html.DisplayNameFor(model => model.Menus.First().Price)
+            <th>@Html.DisplayNameFor(model => model.Menus.First().Type)
+            <th>@Html.DisplayNameFor(model => model.Menus.First().IsVegetarian)
+            <th>@Html.DisplayNameFor(model => model.Menus.First().Calorias)
+            <th>Opciones</th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Menus)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Type</td>
+                <td>@item.IsVegetarian</td>
+                <td>@item.Calorias</td>
+                <td>
+                    <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary">Detalle</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Borrar</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Modificar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

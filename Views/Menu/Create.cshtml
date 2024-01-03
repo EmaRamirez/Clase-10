@@ -1,0 +1,39 @@
+@model Menu
+
+
+@{
+
+}
+
+<form asp-action="OnPostCreate" method="post">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input type="text" asp-for="Name" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input type="text" asp-for="Price" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Type" class="form-label"></label>
+        <select asp-for="Type">
+            <option value="0">Plato Principal</option>
+            <option value="1">Postre</option>
+            <option value="2">Entrada</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IsVegetarian" class="form-label"></label>
+        <input type="checkbox" asp-for="IsVegetarian">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Calorias" class="form-label"></label>
+        <input type="text" asp-for="Calorias" class="form-control">
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-info">Guardar</button>
+    </div>
+
+
+
+</form>

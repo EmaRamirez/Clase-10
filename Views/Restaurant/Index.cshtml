@@ -1,0 +1,40 @@
+@using Clase6.ViewModels;
+@model MenuViewModel
+@{
+
+}
+<h2 style="text-align: center;">Listado de Restaurantes</h2>
+
+<a class="btn btn-primary" asp-action="Create" asp-controller="Restaurant">Crear</a>
+
+<div>
+    <table class="table table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().Address)</th>
+                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().Mail)</th>
+                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().Phone)</th>
+                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().menuId)</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Restaurantes)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Address</td>
+                    <td>@item.Mail</td>
+                    <td>@item.Phone</td>
+                    <td>@item.menuId</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Modificar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Borrar</a>
+                        <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-warning">Detalle</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

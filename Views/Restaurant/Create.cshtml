@@ -1,0 +1,33 @@
+@model Restaurant
+
+
+<div>
+    <form method="Post" asp-action="Create">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input type="text" class="form-control" asp-for="Name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Address"></label>
+            <input type="text" class="form-control" asp-for="Address">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Mail"></label>
+            <input type="text" class="form-control" asp-for="Mail">
+        </div>
+        <div class=" mb-3">
+            <label class="form-label" asp-for="Phone"></label>
+            <input type="text" class="form-control" asp-for="Phone">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="menuId"></label>
+            <select asp-for="menuId" asp-items="ViewBag.MenuId"></select> >
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-info">Guardar</button>
+        </div>
+
+
+    </form>
+</div>
