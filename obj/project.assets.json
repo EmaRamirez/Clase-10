@@ -10677,11 +10677,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\emanu\\Manu\\ISTEA\\2do Cuatrimestre\\Herramientas de programacion\\Profesor_Manuel_Fondovila\\Clase6\\Clase6\\Clase6.csproj",
+      "projectUniqueName": "D:\\emanu\\Manu\\ISTEA\\2do Cuatrimestre\\Herramientas de programacion\\Profesor_Manuel_Fondovila\\Clase_9\\Clase-6\\Clase6.csproj",
       "projectName": "Clase6",
-      "projectPath": "D:\\emanu\\Manu\\ISTEA\\2do Cuatrimestre\\Herramientas de programacion\\Profesor_Manuel_Fondovila\\Clase6\\Clase6\\Clase6.csproj",
+      "projectPath": "D:\\emanu\\Manu\\ISTEA\\2do Cuatrimestre\\Herramientas de programacion\\Profesor_Manuel_Fondovila\\Clase_9\\Clase-6\\Clase6.csproj",
       "packagesPath": "C:\\Users\\emanu\\.nuget\\packages\\",
-      "outputPath": "D:\\emanu\\Manu\\ISTEA\\2do Cuatrimestre\\Herramientas de programacion\\Profesor_Manuel_Fondovila\\Clase6\\Clase6\\obj\\",
+      "outputPath": "D:\\emanu\\Manu\\ISTEA\\2do Cuatrimestre\\Herramientas de programacion\\Profesor_Manuel_Fondovila\\Clase_9\\Clase-6\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

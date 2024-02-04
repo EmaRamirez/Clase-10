@@ -17,9 +17,32 @@ public class MenuContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        /*
+        FORMAS DE HACER LA RELACION MUCHOS A MUCHOS 
+        
+        modelBuilder.Entity<Restaurant>()
+         .HasMany(x => x.Menus).
+         WithMany(x => x.Restaurants).
+         UsingEntity(
+             "MenuRestaurante",
+             l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("MenuId").HasPrincipalKey(nameof(Menu.Id)),
+             k => k.HasOne(typeof(Restaurant)).WithMany().HasForeignKey("RestaurantId").HasPrincipalKey(nameof(Restaurant.Id)),
+             m => m.HasKey("MenuId", "RestaurantId")
+
+NO ESPECIFICAMOS EL NOMBRE DE LA TABLA
+        modelBuilder.Entity<Restaurant>()
+         .HasMany(x => x.Menus)
+         .WithMany(x => x.Restaurants);
+             );
+
+             */
+        //ESPECIFICAMOS EL NOMBRE DE LA TABLA
         modelBuilder.Entity<Menu>()
-        .HasMany(p => p.Restaurants)
-        .WithOne(p => p.Menu)
-        .HasForeignKey(x => x.menuId);
+        .HasMany(x => x.Restaurants)
+        .WithMany(p => p.Menus)
+        .UsingEntity("MenuRestaurant");
+
+
     }
+
 }

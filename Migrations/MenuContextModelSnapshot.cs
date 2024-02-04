@@ -65,30 +65,39 @@ namespace Clase6.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("menuId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("menuId");
 
                     b.ToTable("Restaurant");
                 });
 
-            modelBuilder.Entity("Clase6.Models.Restaurant", b =>
+            modelBuilder.Entity("MenuRestaurant", b =>
                 {
-                    b.HasOne("Clase6.Models.Menu", "Menu")
-                        .WithMany("Restaurant")
-                        .HasForeignKey("menuId")
+                    b.Property<int>("MenusId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RestaurantsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("MenusId", "RestaurantsId");
+
+                    b.HasIndex("RestaurantsId");
+
+                    b.ToTable("MenuRestaurant");
+                });
+
+            modelBuilder.Entity("MenuRestaurant", b =>
+                {
+                    b.HasOne("Clase6.Models.Menu", null)
+                        .WithMany()
+                        .HasForeignKey("MenusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Menu");
-                });
-
-            modelBuilder.Entity("Clase6.Models.Menu", b =>
-                {
-                    b.Navigation("Restaurant");
+                    b.HasOne("Clase6.Models.Restaurant", null)
+                        .WithMany()
+                        .HasForeignKey("RestaurantsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -21,14 +21,11 @@ public class MenuController : Controller
     {
         var query = from menu in _context.Menu select menu;
 
-
-
         if (!string.IsNullOrEmpty(NameFilter))
         {
             query = query.Where(x => x.Name.ToLower().Contains(NameFilter.ToLower()));
         }
-        var restaurants = query.Include(x => x.Restaurants).Select(x => x.Restaurants).ToList();
-        var model = new MenuViewModel();
+        var model = new MenuIndexViewModel();
         model.Menus = query.ToList();
 
 
@@ -40,12 +37,15 @@ public class MenuController : Controller
         return View();
     }
 
-    public IActionResult OnPostCreate(Menu Obj)
+    public IActionResult OnPostCreate(MenuCreateViewModel ObjCreate)
     {
+
         if (!ModelState.IsValid)
         {
             return RedirectToAction("Create");
         }
+
+        var Obj = new Menu(ObjCreate.Name, ObjCreate.Price, ObjCreate.Type, ObjCreate.IsVegetarian, ObjCreate.Calorias);
         _context.Menu.Add(Obj);
         _context.SaveChanges();
         return RedirectToAction("Index");
@@ -54,8 +54,8 @@ public class MenuController : Controller
     {
         var filtro = _context.Menu.Include(x => x.Restaurants).FirstOrDefault(x => x.Id == id);
 
-        //var resta = _context.Restaurant.Where(x => x.menuId == filtro.Id).ToList();
-        var viewModels = new MenuDetailViewModels(filtro.Name, filtro.Price, (filtro.Type).ToString(), filtro.IsVegetarian, filtro.Calorias, filtro.Restaurants);
+        
+        var viewModels = new MenuDetailViewModels(filtro.Id,filtro.Name, filtro.Price, (filtro.Type).ToString(), filtro.IsVegetarian, filtro.Calorias, filtro.Restaurants);
 
         return View(viewModels);
     }
@@ -75,17 +75,34 @@ public class MenuController : Controller
     public IActionResult Edit(int id)
     {
         var filtro = _context.Menu.FirstOrDefault(x => x.Id == id);
-        return View(filtro);
+        var model = new MenuDetailViewModels(filtro.Id, filtro.Name, filtro.Price, (filtro.Type).ToString(), filtro.IsVegetarian, filtro.Calorias);
+
+        return View(model);
     }
 
-    public IActionResult OnPostEdit(Menu obj)
+    public IActionResult OnPostEdit(MenuDetailViewModels objEdit)
     {
         if (!ModelState.IsValid)
         {
             return RedirectToAction("Edit");
         }
-        var borrar = _context.Menu.First(x => x.Id == obj.Id);
+        var tipo = new MenuType();
+        if (objEdit.Type == "0")
+        {
+            tipo = MenuType.Main;
+        }
+        else if (objEdit.Type == "1")
+        {
+            tipo = MenuType.Dessert;
+        }
+        else
+        {
+            tipo = MenuType.Entree;
+        };
+
+        var borrar = _context.Menu.First(x => x.Id == objEdit.Id);
         _context.Menu.Remove(borrar);
+        var obj = new Menu(objEdit.Name, objEdit.Price, tipo, objEdit.IsVegetarian, objEdit.Calorias);
         _context.Menu.Add(obj);
         _context.SaveChanges();
         return RedirectToAction("Index");

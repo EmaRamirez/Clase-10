@@ -1,9 +1,9 @@
 @using Clase6.ViewModels;
-@model MenuViewModel
+@model RestaurantIndexViewModel
 @{
 
 }
-<h2 style="text-align: center;">Listado de Restaurantes</h2>
+<h2 style="text-align: center;">Listado de restaurants</h2>
 
 <a class="btn btn-primary" asp-action="Create" asp-controller="Restaurant">Crear</a>
 
@@ -11,23 +11,25 @@
     <table class="table table">
         <thead>
             <tr>
-                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().Name)</th>
-                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().Address)</th>
-                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().Mail)</th>
-                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().Phone)</th>
-                <th>@Html.DisplayNameFor(model => model.Restaurantes.First().menuId)</th>
+                <th>@Html.DisplayNameFor(model => model.restaurants.First().Name)</th>
+                <th>@Html.DisplayNameFor(model => model.restaurants.First().Address)</th>
+                <th>@Html.DisplayNameFor(model => model.restaurants.First().Mail)</th>
+                <th>@Html.DisplayNameFor(model => model.restaurants.First().Phone)</th>
+                <th>@Html.DisplayNameFor(model => model.restaurants.First().Menus)</th>
                 <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Restaurantes)
+            @foreach (var item in Model.restaurants)
             {
                 <tr>
                     <td>@item.Name</td>
                     <td>@item.Address</td>
                     <td>@item.Mail</td>
                     <td>@item.Phone</td>
-                    <td>@item.menuId</td>
+                    <select>
+                        <option>@item.Menus</option>
+                    </select>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Modificar</a>
                         <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Borrar</a>

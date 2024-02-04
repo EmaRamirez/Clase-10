@@ -1,5 +1,3 @@
-
-
 using Clase6.Data;
 using Clase6.Models;
 using Clase6.ViewModels;
@@ -21,9 +19,9 @@ public class RestaurantController : Controller
     public IActionResult Index()
     {
         var listado = _context.Restaurant.ToList();
-        var model = new MenuViewModel();
+        var model = new RestaurantIndexViewModel();
 
-        model.Restaurantes = listado;
+        model.restaurants = listado;
 
         return View(model);
     }
@@ -31,19 +29,23 @@ public class RestaurantController : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        ViewData["MenuId"] = new SelectList(_context.Menu, "Id", "Name");
+        //ViewData["MenuId"] = new SelectList(_context.Menu, "Id", "Name");
+        ViewData["MenuId"] = new SelectList(_context.Menu.ToList(), "Id", "Name");
         return View();
     }
 
+    //CHECKEADO - FUNCIONA
     [HttpPost]
-    public IActionResult Create(Restaurant restaurant)
+    public IActionResult Create(RestaurantCreateViewModel restaurantCreate)
     {
-        ModelState.Remove("Menu");
 
         if (!ModelState.IsValid)
         {
             return RedirectToAction("Create");
         }
+        var menus = _context.Menu.Where(x => restaurantCreate.MenuIds.Contains(x.Id)).ToList();
+        var restaurant = new Restaurant(restaurantCreate.Name, restaurantCreate.Address, restaurantCreate.Mail, restaurantCreate.Phone, menus);
+
         _context.Restaurant.Add(restaurant);
         _context.SaveChanges();
 

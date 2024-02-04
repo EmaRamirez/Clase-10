@@ -1,5 +1,9 @@
-@model Restaurant
+@using Clase6.ViewModels;
 
+@model RestaurantCreateViewModel
+@{
+    var lista = ViewBag.MenuId;
+}
 
 <div>
     <form method="Post" asp-action="Create">
@@ -20,8 +24,10 @@
             <input type="text" class="form-control" asp-for="Phone">
         </div>
         <div class="mb-3">
-            <label class="form-label" asp-for="menuId"></label>
-            <select asp-for="menuId" asp-items="ViewBag.MenuId"></select> >
+            <label class="form-label" asp-for="MenuIds"></label>
+            <select multiple asp-for="MenuIds" asp-items="lista"></select>
+            @* <select asp-for="MenuIds" asp-items="ViewBag.MenuId" class="form-control">
+            </select>*@
         </div>
 
         <div>

@@ -1,11 +1,12 @@
-@model Menu
+@using Clase6.ViewModels;
+@model MenuDetailViewModels
 @{
 
 }
 
 <form asp-action="OnPostEdit" method="post">
     <div class="mb-3">
-        <input type="hidden" asp-for="Id" class="form-control">
+        <input type="hidden" asp-for="Id" class="form-control" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
@@ -22,6 +23,7 @@
             <option value="1">Postre</option>
             <option value="2">Entrada</option>
         </select>
+
     </div>
     <div class="mb-3">
         <label asp-for="IsVegetarian" class="form-label"></label>

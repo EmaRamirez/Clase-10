@@ -2,9 +2,9 @@ using Clase6.Models;
 
 namespace Clase6.ViewModels;
 
-public class MenuViewModel
+public class MenuIndexViewModel
 {
-    public MenuViewModel()
+    public MenuIndexViewModel()
     {
 
     }
@@ -12,7 +12,7 @@ public class MenuViewModel
 
     public string? NameFilter { get; set; }
 
-    public List<Restaurant> Restaurantes { get; set; }
+
 
 
 }
