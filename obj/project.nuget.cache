@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gVQTGZ2S0Od7ewgZFn86PRhG2Vuh30aLmxBn0DXN/kugOVAUl4dlcuYmsV7dEL7K1W6Z5nNPs4m9NRZtMDzj+Q==",
+  "dgSpecHash": "X7zGscv6jEgsb1I1cutTWXyM1eH0g4xSkPorNjqHn0FcetQNFV5u79/vQCxY567vzbNMlfY2WElv66vIw/ZVvg==",
   "success": true,
-  "projectFilePath": "D:\\emanu\\Manu\\ISTEA\\2do Cuatrimestre\\Herramientas de programacion\\Profesor_Manuel_Fondovila\\Clase_9\\Clase-6\\Clase6.csproj",
+  "projectFilePath": "D:\\emanu\\Manu\\ISTEA\\2do Cuatrimestre\\Herramientas de programacion\\Profesor_Manuel_Fondovila\\Clase_10\\Clase-6\\Clase6.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\emanu\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\emanu\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

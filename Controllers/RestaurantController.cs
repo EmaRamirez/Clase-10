@@ -1,5 +1,6 @@
 using Clase6.Data;
 using Clase6.Models;
+using Clase6.Services;
 using Clase6.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,28 +10,36 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 public class RestaurantController : Controller
 {
 
-    private readonly MenuContext _context;
-    public RestaurantController(MenuContext context)
+    private IRestaurantService _RestServ; // directamente se lo mandamos a la interface para que trabaje con ese, ya que si se hace testing es mas facil poder trabajarlo directo de la interface
+    public RestaurantController(IRestaurantService serv)
     {
-        this._context = context;
+        this._RestServ = serv;
     }
 
 
     public IActionResult Index()
     {
-        var listado = _context.Restaurant.ToList();
+        var listado = _RestServ.GetAll();
         var model = new RestaurantIndexViewModel();
-
         model.restaurants = listado;
 
         return View(model);
+    }
+
+    public IActionResult Details(int id)
+    {
+        var restaurant = _RestServ.GetById(id);
+
+        var detail = new RestaurantDetailViewModel(restaurant.Name, restaurant.Address, restaurant.Mail, restaurant.Phone, restaurant.Menus);
+        return View(detail);
+
     }
 
     [HttpGet]
     public IActionResult Create()
     {
         //ViewData["MenuId"] = new SelectList(_context.Menu, "Id", "Name");
-        ViewData["MenuId"] = new SelectList(_context.Menu.ToList(), "Id", "Name");
+        ViewData["MenuId"] = new SelectList(new List<Menu>(), "Id", "Name");// agregar el service de menu
         return View();
     }
 
@@ -43,13 +52,15 @@ public class RestaurantController : Controller
         {
             return RedirectToAction("Create");
         }
-        var menus = _context.Menu.Where(x => restaurantCreate.MenuIds.Contains(x.Id)).ToList();
+
+        //FALTA AGREGAR EL SERVICIO DE MENU PARA AGREGAR LOS PLATOS QUE TIENE EL RESTAURANTE EN CREAR
         var restaurant = new Restaurant(restaurantCreate.Name, restaurantCreate.Address, restaurantCreate.Mail, restaurantCreate.Phone, menus);
 
-        _context.Restaurant.Add(restaurant);
-        _context.SaveChanges();
+        _RestServ.Create(restaurant);
+
 
 
         return RedirectToAction("Index");
     }
 }
+
