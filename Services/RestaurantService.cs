@@ -26,6 +26,7 @@ public class RestaurantServices : IRestaurantService
     {
         var restaurante = GetById(id);
         _context.Restaurant.Remove(restaurante);
+        _context.SaveChanges();
     }
 
     public List<Restaurant> GetAll()
@@ -40,6 +41,7 @@ public class RestaurantServices : IRestaurantService
 
     public void Update(Restaurant obj)
     {
-        throw new NotImplementedException();
+        Delete(obj.Id);
+        Create(obj);
     }
 }

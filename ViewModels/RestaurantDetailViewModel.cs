@@ -25,6 +25,6 @@ public class RestaurantDetailViewModel
     [Display(Name = "Telefono")]
     public string Phone { get; set; }
 
-    [Display(Name = "Menu")]
+    [Display(Name = "Carta")]
     public virtual List<Menu> Menus { get; set; }
 }

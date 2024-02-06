@@ -27,9 +27,15 @@
                     <td>@item.Address</td>
                     <td>@item.Mail</td>
                     <td>@item.Phone</td>
-                    <select>
-                        <option>@item.Menus</option>
-                    </select>
+                    <td>
+                        <select class="form-control">
+                            @foreach (var vari in @item.Menus)
+                            {
+                                <option>@vari.Name</option>
+                            }
+                        </select>
+                    </td>
+
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Modificar</a>
                         <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Borrar</a>

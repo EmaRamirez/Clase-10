@@ -1,0 +1,40 @@
+@using Clase6.ViewModels;
+
+@model RestaurantDetailViewModel
+@{
+
+}
+
+<form method="post" asp-action="Edit" asp-controller="Restaurant">
+    <div class="mb-3">
+        <input type="text" hidden class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Name" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="@Model.Name">
+    </div>
+    <div class=" mb-3">
+        <label asp-for="@Model.Address" class="form-label"></label>
+        <input type="text" asp-for="@Model.Address" class="form-control">
+    </div>
+    <div class=" mb-3">
+        <label asp-for="@Model.Mail" class="form-label"></label>
+        <input type="text" asp-for="@Model.Mail" class="form-control">
+    </div>
+    <div class=" mb-3">
+        <label asp-for="@Model.Phone" class="form-label"></label>
+        <input type="text" asp-for="@Model.Phone" class="form-control">
+    </div>
+    <div class="mb-3">
+        <select asp-for="@Model.Menus">
+            @foreach (var item in @Model.Menus)
+            {
+                <option>@item.Name</option>
+            }
+        </select>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-info">Modificar</button>
+        <a asp-action="Index" class="btn btn-primary">Volver</a>
+    </div>
+</form>

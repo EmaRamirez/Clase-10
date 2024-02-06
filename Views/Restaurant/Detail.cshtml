@@ -1,0 +1,34 @@
+@using Clase6.ViewModels;
+@model RestaurantDetailViewModel
+@{
+
+}
+
+<div class="container">
+    <div>
+        <h2><em> Restaurante @Model.Name</em></h2>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <span>: @Model.Address</span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Mail" class="form-label"></label>
+        <span>: @Model.Mail</span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Phone" class="form-label"></label>
+        <span>: @Model.Phone</span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Menus" class="form-label"></label>
+        @foreach (var item in @Model.Menus)
+        {
+            <li>@item.Name</li>
+        }
+    </div>
+
+    <div>
+        <a asp-action="Index" class="btn btn-primary">Volver</a>
+    </div>
+</div>
