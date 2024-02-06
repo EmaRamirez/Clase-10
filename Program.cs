@@ -1,4 +1,5 @@
 using Clase6.Data;
+using Clase6.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MenuContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("MenuContext")));
+builder.Services.AddScoped<IRestaurantService, RestaurantServices>();//Inyectamos para que trabaje con las peticiones HTTP
+builder.Services.AddScoped<IMenuServices, MenuServices>();
+
 
 var app = builder.Build();
 

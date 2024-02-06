@@ -54,13 +54,21 @@ public class RestaurantController : Controller
         }
 
         //FALTA AGREGAR EL SERVICIO DE MENU PARA AGREGAR LOS PLATOS QUE TIENE EL RESTAURANTE EN CREAR
-        var restaurant = new Restaurant(restaurantCreate.Name, restaurantCreate.Address, restaurantCreate.Mail, restaurantCreate.Phone, menus);
+        var restaurant = new Restaurant(restaurantCreate.Name, restaurantCreate.Address, restaurantCreate.Mail, restaurantCreate.Phone);
 
         _RestServ.Create(restaurant);
 
 
 
         return RedirectToAction("Index");
+    }
+
+    public IActionResult Edit(int id)
+    {
+        var restaurant = _RestServ.GetById(id);
+
+        var detail = new RestaurantDetailViewModel(restaurant.Name, restaurant.Address, restaurant.Mail, restaurant.Phone, restaurant.Menus);
+        return View(detail);
     }
 }
 
