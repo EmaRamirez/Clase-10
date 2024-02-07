@@ -1,5 +1,6 @@
 using Clase6.Data;
 using Clase6.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clase6.Services;
@@ -31,14 +32,22 @@ public class MenuServices : IMenuServices
         return _context.Menu.Include(x => x.Restaurants).FirstOrDefault(x => x.Id == id);
     }
 
-    public List<Menu> GetMenus()
+    public List<Menu> GetMenus(string filter)
     {
-        return _context.Menu.Include(x => x.Restaurants).ToList();
+        var query = GetQuery();
+
+        if (!string.IsNullOrEmpty(filter))
+        {
+            query = query.Where(x => x.Name.ToLower().Contains(filter.ToLower()));
+        }
+        return query.Include(x => x.Restaurants).ToList();
     }
 
-    public void Update(Menu obj)
+    public void Update(int id, Menu obj)
     {
-        Delete(obj.Id);
+        Delete(id);
         Create(obj);
     }
+
+    private IQueryable<Menu> GetQuery() => from manu in _context.Menu select manu;
 }

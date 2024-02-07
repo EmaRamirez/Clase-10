@@ -10,7 +10,7 @@ public interface IRestaurantService
 
     Restaurant GetById(int id);
 
-    void Update(Restaurant obj);
+    void Update(int id,Restaurant obj);
 
     void Delete(int id);
 

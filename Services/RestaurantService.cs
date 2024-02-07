@@ -39,7 +39,7 @@ public class RestaurantServices : IRestaurantService
         return _context.Restaurant.Include(x => x.Menus).FirstOrDefault(x => x.Id == id);
     }
 
-    public void Update(Restaurant obj)
+    public void Update(int id,Restaurant obj)
     {
         Delete(obj.Id);
         Create(obj);

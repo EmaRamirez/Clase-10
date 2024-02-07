@@ -4,7 +4,7 @@ namespace Clase6.Services;
 
 public interface IMenuServices
 {
-    List<Menu> GetMenus();
+    List<Menu> GetMenus(string filter);
 
     void Delete(int id);
 
@@ -12,5 +12,5 @@ public interface IMenuServices
 
     void Create(Menu obj);
 
-    void Update(Menu obj);
+    void Update(int id,Menu obj);
 }

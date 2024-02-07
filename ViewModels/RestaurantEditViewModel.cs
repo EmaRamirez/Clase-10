@@ -2,9 +2,9 @@ using System.ComponentModel.DataAnnotations;
 using Clase6.Models;
 namespace Clase6.ViewModels;
 
-public class RestaurantDetailViewModel
+public class RestaurantEditViewModel
 {
-    public RestaurantDetailViewModel(int id, string name, string address, string mail, string phone)
+    public RestaurantEditViewModel(int id, string name, string address, string mail, string phone)
     {
         this.Id = id;
         this.Name = name;
@@ -13,7 +13,7 @@ public class RestaurantDetailViewModel
         this.Phone = phone;
 
     }
-    public RestaurantDetailViewModel(int id, string name, string address, string mail, string phone, List<Menu> menus) : this(id, name, address, mail, phone)
+    public RestaurantEditViewModel(int id, string name, string address, string mail, string phone, List<Menu> menus) : this(id, name, address, mail, phone)
     {
         this.Menus = menus;
     }

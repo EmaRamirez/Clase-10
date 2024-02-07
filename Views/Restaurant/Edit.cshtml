@@ -1,32 +1,32 @@
 @using Clase6.ViewModels;
 
-@model RestaurantDetailViewModel
+@model RestaurantEditViewModel
 @{
 
 }
 
-<form method="post" asp-action="Edit" asp-controller="Restaurant">
+<form method="post" asp-action="PostEdit" asp-controller="Restaurant">
     <div class="mb-3">
-        <input type="text" hidden class="form-control">
-    </div>
-    <div class="mb-3">
-        <label asp-for="@Model.Name" class="form-label"></label>
-        <input type="text" class="form-control" asp-for="@Model.Name">
-    </div>
-    <div class=" mb-3">
-        <label asp-for="@Model.Address" class="form-label"></label>
-        <input type="text" asp-for="@Model.Address" class="form-control">
-    </div>
-    <div class=" mb-3">
-        <label asp-for="@Model.Mail" class="form-label"></label>
-        <input type="text" asp-for="@Model.Mail" class="form-control">
-    </div>
-    <div class=" mb-3">
-        <label asp-for="@Model.Phone" class="form-label"></label>
-        <input type="text" asp-for="@Model.Phone" class="form-control">
+        <input type="text" asp-for="Id" hidden class="form-control">
     </div>
     <div class="mb-3">
-        <select asp-for="@Model.Menus">
+        <label asp-for="Name" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Name">
+    </div>
+    <div class=" mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <input type="text" asp-for="Address" class="form-control">
+    </div>
+    <div class=" mb-3">
+        <label asp-for="Mail" class="form-label"></label>
+        <input type="text" asp-for="Mail" class="form-control">
+    </div>
+    <div class=" mb-3">
+        <label asp-for="Phone" class="form-label"></label>
+        <input type="text" asp-for="Phone" class="form-control">
+    </div>
+    <div class="mb-3">
+        <select multiple asp-for="Menus">
             @foreach (var item in @Model.Menus)
             {
                 <option>@item.Name</option>

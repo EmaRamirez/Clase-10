@@ -32,7 +32,7 @@ public class RestaurantController : Controller
     {
         var restaurant = _RestServ.GetById(id);
 
-        var detail = new RestaurantDetailViewModel(restaurant.Name, restaurant.Address, restaurant.Mail, restaurant.Phone, restaurant.Menus);
+        var detail = new RestaurantDetailViewModel(restaurant.Id, restaurant.Name, restaurant.Address, restaurant.Mail, restaurant.Phone, restaurant.Menus);
         return View(detail);
 
     }
@@ -40,7 +40,7 @@ public class RestaurantController : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        ViewData["MenuId"] = new SelectList(_menuServ.GetMenus(), "Id", "Name");// agregar el service de menu
+        ViewData["MenuId"] = new SelectList(_menuServ.GetMenus(null), "Id", "Name");// agregar el service de menu
         return View();
     }
 
@@ -72,22 +72,27 @@ public class RestaurantController : Controller
     {
         var restaurant = _RestServ.GetById(id);
 
-        var detail = new RestaurantDetailViewModel(restaurant.Name, restaurant.Address, restaurant.Mail, restaurant.Phone, restaurant.Menus);
+        var detail = new RestaurantEditViewModel(restaurant.Id, restaurant.Name, restaurant.Address, restaurant.Mail, restaurant.Phone, restaurant.Menus);
         return View(detail);
+        
     }
 
 
     //TO DO: VER EL EDIT QUE FUNCIONE
     [HttpPost]
-    public IActionResult Edit(RestaurantDetailViewModel obj)
+    public IActionResult PostEdit([Bind("Id,Name,Address,Mail,Phone,Menus")] RestaurantEditViewModel obj)
     {
+        if (!ModelState.IsValid)
+        {
+            return RedirectToAction("Edit");
+        }
         var menu = new List<Menu>();
         foreach (var item in obj.Menus)
         {
             menu.Add(_menuServ.GetById(item.Id));
         }
         var restaurant = new Restaurant(obj.Name, obj.Address, obj.Mail, obj.Phone, menu);
-        _RestServ.Update(restaurant);
+        _RestServ.Update(obj.Id, restaurant);
         return RedirectToAction("Index");
     }
 
